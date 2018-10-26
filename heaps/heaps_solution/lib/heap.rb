@@ -73,8 +73,6 @@ class BinaryMinHeap
     end
 
     self.heapify_down(array, smallest_child_idx, &prc)
-    
-    array
   end
   
   def self.heapify_up(array, child_idx, &prc)
