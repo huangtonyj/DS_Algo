@@ -18,15 +18,3 @@ class Array
 
   end
 end
-
-
-    # (0...length).each do |new_to_heap_idx|
-    #   BinaryMinHeap.heapify_up(self, new_to_heap_idx, &max_prc)
-    # end    
-    
-    # (length - 1).downto(0) do |idx|
-    #   self[0], self[idx] = self[idx], self[0]
-    #   BinaryMinHeap.heapify_down(self, 0, idx, &max_prc)
-    # end
-    
-    # self

@@ -17,18 +17,3 @@ def k_largest_elements(array, k)
   
   result
 end
-
-# max_prc = Proc.new { |a,b| b <=> a }
-
-# # Heapify the array
-# (k...array.length).each do |new_to_heap_idx|
-#   BinaryMinHeap.heapify_up(array, new_to_heap_idx, &max_prc)
-# end
-
-# # Take out max, aka first one, update heap with heapify down.
-# (array.length - 1).downto(k) do |idx|
-#   array[0], array[idx] = array[idx], array[0]
-#   BinaryMinHeap.heapify_down(array, 0, idx, &max_prc)
-# end
-
-# array[-k..-1]
