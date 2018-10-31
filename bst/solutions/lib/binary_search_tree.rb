@@ -1,4 +1,4 @@
-require 'bst_node'
+elrequire 'bst_node'
 require 'byebug'
 
 class BinarySearchTree
@@ -22,10 +22,7 @@ class BinarySearchTree
   def depth(tree_node = @root)
     return -1 if tree_node.nil?
       
-    left_depth = depth(tree_node.left)
-    right_depth = depth(tree_node.right)
-
-    1 + (left_depth > right_depth ? left_depth : right_depth)
+    1 + [depth(tree_node.left) + depth(tree_node.right)].max
   end
 
   def is_balanced?(tree_node = @root)
