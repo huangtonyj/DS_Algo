@@ -8,11 +8,6 @@ class BinarySearchTree
     @root = nil
   end
 
-  def insert(value)
-    # setting the root here in case it is still nil
-    @root = insert_into_tree(@root, value)
-  end
-
   def find(value, tree_node = @root)
     return nil if tree_node.nil?
     return tree_node if tree_node.value == value
@@ -20,13 +15,8 @@ class BinarySearchTree
     (value < tree_node.value) ? find(value, tree_node.left) : find(value, tree_node.right)
   end
 
-  def delete(value)
-    @root = delete_from_tree(@root, value)
-  end
-
   def maximum(tree_node = @root)
-    return maximum(tree_node.right) if tree_node.right
-    tree_node
+    tree_node.right ? maximum(tree_node.right) : tree_node
   end
 
   def depth(tree_node = @root)
@@ -44,7 +34,7 @@ class BinarySearchTree
   
     is_balanced?(tree_node.left) && is_balanced?(tree_node.right)
   end
-
+  
   def in_order_traversal(tree_node = @root, arr = [])
     # left children, itself, right children
     in_order_traversal(tree_node.left, arr) if tree_node.left
@@ -54,6 +44,14 @@ class BinarySearchTree
     arr
   end
 
+  def insert(value)
+    # setting the root here in case it is still nil
+    @root = insert_into_tree(@root, value)
+  end
+
+  def delete(value)
+    @root = delete_from_tree(@root, value)
+  end
 
 
   private
