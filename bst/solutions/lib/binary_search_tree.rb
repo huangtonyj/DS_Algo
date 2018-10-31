@@ -29,12 +29,8 @@ class BinarySearchTree
   end
 
   def maximum(tree_node = @root)
-    if tree_node.right
-      maximum_node = maximum(tree_node.right)
-    else
-      maximum_node = tree_node
-    end
-    maximum_node
+    return maximum(tree_node.right) if tree_node.right
+    tree_node
   end
 
   def depth(tree_node = @root)
