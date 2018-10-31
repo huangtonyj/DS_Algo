@@ -1,6 +1,6 @@
 class Vertex
   def initialize(value)
-
+    
   end
 end
 
