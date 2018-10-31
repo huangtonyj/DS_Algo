@@ -34,18 +34,12 @@ class BinarySearchTree
   end
 
   def depth(tree_node = @root)
-    if tree_node.nil?
-      return -1;
-    else
-      left_depth = depth(tree_node.left)
-      right_depth = depth(tree_node.right)
+    return -1 if tree_node.nil?
+      
+    left_depth = depth(tree_node.left)
+    right_depth = depth(tree_node.right)
 
-      if left_depth > right_depth
-        return left_depth + 1
-      else
-        return right_depth + 1
-      end
-    end
+    1 + (left_depth > right_depth ? left_depth : right_depth)
   end
 
   def is_balanced?(tree_node = @root)
