@@ -21,3 +21,15 @@ def install_order(arr)
   # sort the vertices of the graph and add the missing packages
   independent + topological_sort(vertices.values).map { |v| v.value } 
 end
+
+
+
+def install_order2(arr)
+  max_id = arr.reduce(&:+).max
+  vertices = (1..max_id).to_a.map { |e| Vertex.new(e) }
+  arr.each do |tuple|
+    Edge.new(vertices[tuple[1] - 1], vertices[tuple[0] - 1])
+  end
+  # p topological_sort(vertices.values).map(&:value)
+  topological_sort(vertices).map(&:value)
+end
