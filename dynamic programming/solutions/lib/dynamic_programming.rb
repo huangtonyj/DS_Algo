@@ -90,7 +90,7 @@ class DynamicProgramming
     (0..capacity).each do |i|
       solution_table[i] = []
       # go through the weights one by one, by index
-      (0..weights.length - 1).each do |j|
+      (0...weights.length).each do |j|
         if i == 0
           # if the capacity is 0, then 0 is how much value can be placed in any slot
           solution_table[i][j] = 0
