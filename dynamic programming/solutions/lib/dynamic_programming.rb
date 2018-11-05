@@ -25,12 +25,7 @@ class DynamicProgramming
       new_way_set = []
       (1..3).each do |first_step|
         ways_collection[i - first_step].each do |way|
-          new_way = [first_step]
-          # way.each do |step|
-          #   new_way << step
-          # end
-          new_way += way
-          new_way_set << new_way
+          new_way_set << [first_step] + way
         end
       end
       ways_collection << new_way_set
