@@ -13,13 +13,9 @@ class DynamicProgramming
   end
 
   def frog_hops_bottom_up(n)
-    frog_cache_builder(n)[n]
-  end
-
-  def frog_cache_builder(n)
     ways_collection = [[[]], [[1]], [[1, 1], [2]]]
 
-    return ways_collection if n < 3
+    return ways_collection[n] if n < 3
 
     (3..n).each do |i|
       new_way_set = []
@@ -31,7 +27,7 @@ class DynamicProgramming
       ways_collection << new_way_set
     end
 
-    ways_collection
+    ways_collection[n]
   end
 
   def frog_hops_top_down(n)
