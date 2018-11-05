@@ -1,4 +1,4 @@
-require 'bst_node'
+elrequire 'bst_node'
 require 'byebug'
 
 class BinarySearchTree
@@ -8,80 +8,47 @@ class BinarySearchTree
     @root = nil
   end
 
+  def find(value, tree_node = @root)
+    return nil if tree_node.nil?
+    return tree_node if tree_node.value == value
+
+    (value < tree_node.value) ? find(value, tree_node.left) : find(value, tree_node.right)
+  end
+
+  def maximum(tree_node = @root)
+    tree_node.right ? maximum(tree_node.right) : tree_node
+  end
+
+  def depth(tree_node = @root)
+    return -1 if tree_node.nil?
+      
+    1 + [depth(tree_node.left) + depth(tree_node.right)].max
+  end
+
+  def is_balanced?(tree_node = @root)
+    return true if tree_node.nil?
+    return false if (depth(tree_node.left) - depth(tree_node.right)).abs > 1
+  
+    is_balanced?(tree_node.left) && is_balanced?(tree_node.right)
+  end
+  
+  def in_order_traversal(tree_node = @root, arr = [])
+    # left children, itself, right children
+    in_order_traversal(tree_node.left, arr) if tree_node.left
+    arr.push(tree_node.value)
+    in_order_traversal(tree_node.right, arr) if tree_node.right
+
+    arr
+  end
+
   def insert(value)
     # setting the root here in case it is still nil
     @root = insert_into_tree(@root, value)
   end
 
-  def find(value, tree_node = @root)
-    return nil if tree_node.nil?
-    return tree_node if tree_node.value == value
-
-    if value < tree_node.value
-      find(value, tree_node.left)
-    elsif value > tree_node.value
-      find(value, tree_node.right)
-    end
-  end
-
   def delete(value)
     @root = delete_from_tree(@root, value)
   end
-
-  def maximum(tree_node = @root)
-    if tree_node.right
-      maximum_node = maximum(tree_node.right)
-    else
-      maximum_node = tree_node
-    end
-    maximum_node
-  end
-
-  def depth(tree_node = @root)
-    if tree_node.nil?
-      return -1;
-    else
-      left_depth = depth(tree_node.left)
-      right_depth = depth(tree_node.right)
-
-      if left_depth > right_depth
-        return left_depth + 1
-      else
-        return right_depth + 1
-      end
-    end
-  end
-
-  def is_balanced?(tree_node = @root)
-    return true if tree_node.nil?
-
-    balanced = true
-    left_depth = depth(tree_node.left)
-    right_depth = depth(tree_node.right)
-    balanced = false if (left_depth - right_depth).abs > 1
-
-    if balanced && is_balanced?(tree_node.left) && is_balanced?(tree_node.right)
-      return true
-    end
-
-    false
-  end
-
-  def in_order_traversal(tree_node = @root, arr = [])
-    # left children, itself, right children
-    if tree_node.left
-      in_order_traversal(tree_node.left, arr)
-    end
-
-    arr.push(tree_node.value)
-
-    if tree_node.right
-      in_order_traversal(tree_node.right, arr)
-    end
-
-    arr
-  end
-
 
 
   private

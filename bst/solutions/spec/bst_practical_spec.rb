@@ -1,5 +1,6 @@
 require 'rspec'
 require 'bst_practical'
+require 'binary_search_tree'
 
 describe 'BST Practical Question' do
   let(:prefilled_bst) do
